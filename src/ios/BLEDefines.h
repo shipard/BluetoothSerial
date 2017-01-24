@@ -33,4 +33,10 @@
 #define LAIRD_CHAR_TX_UUID                       "569a2000-b87f-490c-92cb-11ba5ea5167c"
 #define LAIRD_CHAR_RX_UUID                       "569a2001-b87f-490c-92cb-11ba5ea5167c"
 
+// Bluetooth Printer
+#define BTPRINTER_SERVICE_UUID                   "E7810A71-73AE-499D-8C15-FAA9AEF0C3F2"
+#define BTPRINTER_CHAR_TX_UUID                   "BEF8D6C9-9C21-4C9E-B632-BD58C1009F9F"
+#define BTPRINTER_CHAR_RX_UUID                   "BEF8D6C9-9C21-4C9E-B632-BD58C1009F9F"
+
+
 #define RBL_BLE_FRAMEWORK_VER                    0x0200
