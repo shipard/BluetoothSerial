@@ -176,13 +176,29 @@ CBUUID *writeCharacteristicUUID;
 
         return;
     }
-
+  
+  int chunkSize = 40;
+  int count = 0;
+  int dataLen = (int)data.length;
+  if (dataLen > chunkSize) {
+    while (count < dataLen && dataLen-count > chunkSize) {
+      
+      [p writeValue:[data subdataWithRange:NSMakeRange(count, chunkSize)] forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
+      [NSThread sleepForTimeInterval:0.005];
+      count += chunkSize;
+    }
+  }
+  
+  if (count < dataLen)
+    [p writeValue:[data subdataWithRange:NSMakeRange(count, dataLen-count)] forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
+/*
     if ((characteristic.properties & CBCharacteristicPropertyWrite) == CBCharacteristicPropertyWrite) {
         [p writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
     }
     else if ((characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) == CBCharacteristicPropertyWriteWithoutResponse) {
         [p writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
     }
+ */
 }
 
 -(UInt16) swap:(UInt16)s
